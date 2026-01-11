@@ -6,15 +6,15 @@
 The name combines "Archaeology" + "Triage" - reflecting the app's core mission: helping field workers quickly assess and prioritize artifact care, just like medical triage prioritizes patient treatment.
 
 ## Tech Stack
-- **Frontend**: React 18 + Vite + TypeScript
-- **Styling**: Tailwind CSS (RTL support built-in)
+- **Frontend**: React 19 + Vite 7 + TypeScript 5.9
+- **Styling**: Tailwind CSS v4 (RTL support built-in)
 - **State**: React Context + useReducer
 - **Database**: Firebase (Firestore + Storage)
 - **Backend**: Netlify Functions (serverless)
 - **AI**: Google Gemini Vision API (artifact identification)
 - **i18n**: react-i18next (Hebrew/English)
 - **Icons**: Lucide React
-- **Routing**: React Router v6
+- **Routing**: React Router v7
 - **Hosting**: Netlify
 
 **Important**: Mobile-first BUT must look great on desktop too!
@@ -147,19 +147,19 @@ adi/
 
 ## Implementation Order
 
-### Phase 1: Project Setup
-1. Initialize Vite + React + TypeScript
-2. Configure Tailwind with RTL support
-3. Setup i18n with Hebrew/English
-4. Create base Layout with Header + BottomNav
-5. Setup React Router
+### Phase 1: Project Setup ✅ COMPLETED
+1. ✅ Initialize Vite + React + TypeScript
+2. ✅ Configure Tailwind with RTL support
+3. ✅ Setup i18n with Hebrew/English
+4. ✅ Create base Layout with Header + BottomNav
+5. ✅ Setup React Router
 
-### Phase 2: Field Guide
-1. Create artifact data structure (from research doc)
-2. Build ArtifactCard component
-3. Build Guide page with artifact grid
-4. Build ArtifactDetail page with preservation steps
-5. Add RiskIndicator component
+### Phase 2: Field Guide ✅ COMPLETED
+1. ✅ Create artifact data structure (from research doc)
+2. ✅ Build ArtifactCard component
+3. ✅ Build Guide page with artifact grid
+4. ✅ Build ArtifactDetail page with preservation steps
+5. ✅ Add RiskIndicator component
 
 ### Phase 3: Documentation
 1. Setup Firebase project (Firestore + Storage)
@@ -326,13 +326,13 @@ adi/
 8. Deploy to Netlify and verify production build
 
 ## Key Files to Create
-1. `package.json` - dependencies
-2. `src/data/artifacts.ts` - all artifact preservation data from research
-3. `src/i18n/he.json` & `en.json` - translations
+1. ✅ `package.json` - dependencies
+2. ✅ `src/data/artifacts.ts` - all artifact preservation data from research
+3. ✅ `src/i18n/he.json` & `en.json` - translations
 4. `src/lib/firebase.ts` - Firebase config & client
 5. `netlify/functions/identify.ts` - Gemini API serverless function
-6. `src/pages/Guide.tsx` - main field guide interface
-7. `src/pages/Identify.tsx` - AI identification page
+6. ✅ `src/pages/Guide.tsx` - main field guide interface
+7. ✅ `src/pages/Identify.tsx` - AI identification page (placeholder)
 
 ## Environment Variables
 
