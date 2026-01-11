@@ -147,12 +147,19 @@ adi/
 
 ## Implementation Order
 
+> **IMPORTANT: After completing each phase:**
+> 1. Test on mobile viewport (Hebrew & English)
+> 2. Test on desktop viewport (Hebrew & English)
+> 3. Run code-review to check for bugs, UI/UX issues, and code quality
+> 4. Fix any issues before proceeding to next phase
+
 ### Phase 1: Project Setup ✅ COMPLETED
 1. ✅ Initialize Vite + React + TypeScript
 2. ✅ Configure Tailwind with RTL support
 3. ✅ Setup i18n with Hebrew/English
 4. ✅ Create base Layout with Header + BottomNav
 5. ✅ Setup React Router
+6. ✅ **Review & Test** - Mobile/Desktop, HE/EN, Code Review
 
 ### Phase 2: Field Guide ✅ COMPLETED
 1. ✅ Create artifact data structure (from research doc)
@@ -160,6 +167,7 @@ adi/
 3. ✅ Build Guide page with artifact grid
 4. ✅ Build ArtifactDetail page with preservation steps
 5. ✅ Add RiskIndicator component
+6. ✅ **Review & Test** - Mobile/Desktop, HE/EN, Code Review
 
 ### Phase 3: Documentation
 1. Setup Firebase project (Firestore + Storage)
@@ -167,6 +175,7 @@ adi/
 3. Build FindingForm with photo upload to Firebase Storage
 4. Build Findings list page
 5. Build FindingDetail page
+6. **Review & Test** - Mobile/Desktop, HE/EN, Code Review
 
 ### Phase 4: AI Identification
 1. Create Netlify Function for Gemini API (`netlify/functions/identify.ts`)
@@ -175,6 +184,7 @@ adi/
 4. Build Identify page with results display
 5. Create `useArtifactIdentification` hook
 6. Connect to preservation guide on identification
+7. **Review & Test** - Mobile/Desktop, HE/EN, Code Review
 
 ### Phase 5: Education
 1. Create lessons data structure
@@ -182,13 +192,15 @@ adi/
 3. Build Education page
 4. Create quiz data
 5. Build Quiz component with scoring
+6. **Review & Test** - Mobile/Desktop, HE/EN, Code Review
 
 ### Phase 6: Polish & Deploy
 1. Add loading states
 2. Add error handling
-3. Test RTL layout (Hebrew/English)
-4. Test desktop layout (sidebar nav, two-column grid)
-5. Deploy to Netlify
+3. Final RTL layout test (Hebrew/English)
+4. Final desktop layout test (sidebar nav, two-column grid)
+5. **Final Code Review**
+6. Deploy to Netlify
 
 ## UI Design: "Field Kit" Aesthetic
 
