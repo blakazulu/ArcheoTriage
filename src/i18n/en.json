@@ -1,0 +1,215 @@
+{
+  "app": {
+    "name": "ArcheoTriage",
+    "tagline": "First Aid for Archaeologists"
+  },
+  "nav": {
+    "home": "Home",
+    "guide": "Guide",
+    "findings": "Findings",
+    "education": "Learn",
+    "settings": "Settings"
+  },
+  "home": {
+    "quickActions": "Quick Actions",
+    "newFinding": "New Finding",
+    "documentation": "Document",
+    "learning": "Learn",
+    "artifactTypes": "Artifact Types",
+    "quickReference": "Quick Reference",
+    "mainRiskFactors": "Main Risk Factors"
+  },
+  "artifacts": {
+    "ceramics": {
+      "name": "Ceramics",
+      "subtitle": "Mechanical & Thermal Control",
+      "description": "Pottery and ceramic vessels"
+    },
+    "metals": {
+      "name": "Metals",
+      "subtitle": "Chemical Control",
+      "description": "Coins and metal objects"
+    },
+    "organic": {
+      "name": "Organic",
+      "subtitle": "Biological & Mechanical Control",
+      "description": "Bone, wood and organic materials"
+    },
+    "textiles": {
+      "name": "Textiles",
+      "subtitle": "Environmental Control",
+      "description": "Fabrics, ropes and fibers"
+    },
+    "scrolls": {
+      "name": "Scrolls",
+      "subtitle": "Critical Control",
+      "description": "Parchments, papyri and scrolls"
+    }
+  },
+  "risk": {
+    "critical": "Critical",
+    "high": "High Risk",
+    "medium": "Medium Risk",
+    "low": "Low Risk"
+  },
+  "riskFactors": {
+    "humidity": {
+      "name": "Humidity",
+      "description": "Especially dangerous for metals and organics",
+      "action": "Use silica gel"
+    },
+    "temperature": {
+      "name": "Temperature",
+      "description": "Extreme changes cause cracking",
+      "action": "Shade and insulation"
+    },
+    "shock": {
+      "name": "Shock",
+      "description": "Ceramics and glass are particularly sensitive",
+      "action": "Proper padding"
+    },
+    "light": {
+      "name": "Light",
+      "description": "UV radiation damages organic materials",
+      "action": "Store in darkness"
+    },
+    "oxygen": {
+      "name": "Oxidation",
+      "description": "Causes corrosion in metals",
+      "action": "Seal with dry environment"
+    }
+  },
+  "preservation": {
+    "title": "Preservation Instructions",
+    "steps": "Preservation Steps",
+    "boxSpecs": "Box Specifications",
+    "materials": "Required Materials",
+    "warnings": "Warnings",
+    "successIndicators": "Success Indicators"
+  },
+  "ceramics": {
+    "step1": {
+      "title": "Prepare Rigid Container",
+      "description": "Choose thick plastic box to disperse impact energy"
+    },
+    "step2": {
+      "title": "Foam Padding",
+      "description": "Place medium-density foam for shock absorption"
+    },
+    "step3": {
+      "title": "Cut Custom Cavity",
+      "description": "Create cavity matching artifact shape - no pressure on edges"
+    },
+    "step4": {
+      "title": "Acid-Free Paper Wrap",
+      "description": "Chemical protection preventing slow reactions"
+    },
+    "success1": "Artifact doesn't move when box is tilted",
+    "success2": "No new cracks formed"
+  },
+  "metals": {
+    "step1": {
+      "title": "Prepare Sealed Container",
+      "description": "Choose tightly sealed box preventing air exchange"
+    },
+    "step2": {
+      "title": "Add Silica Gel",
+      "description": "Place silica packet to reduce relative humidity"
+    },
+    "step3": {
+      "title": "Inert Base",
+      "description": "Use foam or plastic that doesn't react chemically"
+    },
+    "step4": {
+      "title": "Isolated Wrap",
+      "description": "Wrap in acid-free paper only"
+    },
+    "success1": "No color change",
+    "success2": "No new rust appearing"
+  },
+  "organic": {
+    "step1": {
+      "title": "Extra Soft Padding",
+      "description": "Use low-density foam to prevent collapse"
+    },
+    "step2": {
+      "title": "Pressure-Free Cradle",
+      "description": "Create deep 'nest' for even load distribution"
+    },
+    "step3": {
+      "title": "Moderate Humidity Control",
+      "description": "Use cotton paper for controlled breathing"
+    },
+    "step4": {
+      "title": "Touch Control",
+      "description": "Minimal contact only - use gloves"
+    },
+    "success1": "No new crumbling",
+    "success2": "Structural stability maintained"
+  },
+  "textiles": {
+    "step1": {
+      "title": "Prepare Flat Surface",
+      "description": "Place on clean, flat surface without folds"
+    },
+    "step2": {
+      "title": "Gentle Rolling",
+      "description": "Roll on acid-free tube - never fold!"
+    },
+    "step3": {
+      "title": "Protective Wrap",
+      "description": "Wrap in acid-free tissue paper"
+    },
+    "step4": {
+      "title": "Dark Storage",
+      "description": "Place in light-proof container"
+    },
+    "success1": "No new tears",
+    "success2": "Colors remain stable"
+  },
+  "scrolls": {
+    "step1": {
+      "title": "Do Not Open!",
+      "description": "Never attempt to open or unroll - risk of total destruction"
+    },
+    "step2": {
+      "title": "Full Support",
+      "description": "Place on rigid surface supporting entire length"
+    },
+    "step3": {
+      "title": "Complete Isolation",
+      "description": "Wrap in tissue paper and place in sealed container"
+    },
+    "step4": {
+      "title": "Stable Environment",
+      "description": "Maintain darkness, dryness and temperature stability"
+    },
+    "success1": "Artifact remains intact",
+    "success2": "No splitting or crumbling"
+  },
+  "findings": {
+    "title": "My Findings",
+    "empty": "No findings yet",
+    "addFirst": "Add your first finding"
+  },
+  "education": {
+    "title": "Learning Center",
+    "comingSoon": "Coming soon - Lessons and quizzes"
+  },
+  "identify": {
+    "title": "Identify Artifact",
+    "takePhoto": "Take Photo",
+    "uploadPhoto": "Upload Photo",
+    "analyzing": "Analyzing...",
+    "comingSoon": "AI identification coming soon"
+  },
+  "common": {
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "loading": "Loading..."
+  }
+}

@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+/* Custom Theme Variables */
+@theme {
+  /* Core Colors - Slate Palette */
+  --color-slate: #3D5A6C;
+  --color-slate-dark: #2C4251;
+  --color-slate-light: #4E6B7D;
+  --color-stone: #7A8B8C;
+  --color-stone-light: #9AABAC;
+
+  /* Canvas/Background */
+  --color-canvas: #F5F3EE;
+  --color-canvas-dark: #E8E4DB;
+  --color-canvas-darker: #D9D4C7;
+
+  /* Signal Colors */
+  --color-signal-orange: #E85D04;
+  --color-signal-orange-light: #F48C42;
+
+  /* Triage Severity */
+  --color-critical: #C1121F;
+  --color-critical-bg: rgba(193, 18, 31, 0.12);
+  --color-warning: #E9A319;
+  --color-warning-bg: rgba(233, 163, 25, 0.15);
+  --color-stable: #4A6FA5;
+  --color-stable-bg: rgba(74, 111, 165, 0.12);
+  --color-info: #1D4E89;
+  --color-info-bg: rgba(29, 78, 137, 0.1);
+
+  /* Typography */
+  --font-display: 'Black Ops One', 'Arial Black', sans-serif;
+  --font-body-he: 'Heebo', 'Arial', sans-serif;
+  --font-body-en: 'Rubik', 'Arial', sans-serif;
+
+  /* Shadows */
+  --shadow-card: 0 2px 8px rgba(74, 82, 64, 0.15), 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-lifted: 0 8px 24px rgba(74, 82, 64, 0.2), 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Base Styles */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background-color: var(--color-canvas);
+}
+
+/* RTL Support */
+[dir="rtl"] body {
+  font-family: var(--font-body-he);
+}
+
+[dir="ltr"] body {
+  font-family: var(--font-body-en);
+}
+
+/* Canvas Texture Background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+}
+
+/* Hazard Stripe Pattern */
+.hazard-stripe {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-signal-orange) 0px,
+    var(--color-signal-orange) 20px,
+    var(--color-slate-dark) 20px,
+    var(--color-slate-dark) 40px
+  );
+}
+
+/* Card Animations */
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-card-enter {
+  animation: cardEnter 0.4s ease backwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease;
+}
+
+/* Gradient Overlay for Buttons */
+.btn-gradient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Step Counter */
+.step-counter {
+  counter-reset: step;
+}
+
+.step-counter > * {
+  counter-increment: step;
+}
+
+.step-counter .step-number::before {
+  content: counter(step);
+}
