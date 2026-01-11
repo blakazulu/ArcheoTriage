@@ -11,7 +11,8 @@ export default function LanguageToggle() {
   return (
     <button
       onClick={toggleLanguage}
-      className="bg-white/10 border border-white/20 rounded px-2 py-1 text-white font-body-en text-xs font-semibold cursor-pointer transition-all hover:bg-white/20"
+      className="bg-white/10 border border-white/20 rounded min-h-[44px] min-w-[44px] px-3 py-2 text-white text-sm font-semibold cursor-pointer transition-all hover:bg-white/20"
+      style={{ fontFamily: 'var(--font-body-en)' }}
     >
       {i18n.language === 'he' ? 'EN' : 'עב'}
     </button>

@@ -1,11 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { AlertTriangle } from 'lucide-react'
-
-const riskFactors = [
-  { id: 'humidity', severity: 'critical' as const },
-  { id: 'temperature', severity: 'warning' as const },
-  { id: 'shock', severity: 'stable' as const },
-]
+import { riskFactors } from '../data/artifacts'
 
 export default function TriageCard() {
   const { t } = useTranslation()
