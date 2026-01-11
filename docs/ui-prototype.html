@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ArcheoTriage - UI Prototype</title>
+
+  <!-- Fonts: Stencil for display, Clean sans for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Rubik:wght@400;500;600;700&family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================
+       ARCHEOTRIAGE - FIELD KIT DESIGN SYSTEM
+       ============================================= */
+
+    :root {
+      /* Core Colors - Slate Palette */
+      --color-slate: #3D5A6C;
+      --color-slate-dark: #2C4251;
+      --color-slate-light: #4E6B7D;
+      --color-stone: #7A8B8C;
+      --color-stone-light: #9AABAC;
+
+      /* Canvas/Background */
+      --color-canvas: #F5F3EE;
+      --color-canvas-dark: #E8E4DB;
+      --color-canvas-darker: #D9D4C7;
+
+      /* Signal Colors - Triage System */
+      --color-signal-orange: #E85D04;
+      --color-signal-orange-light: #F48C42;
+
+      /* Triage Severity */
+      --color-critical: #C1121F;
+      --color-critical-bg: rgba(193, 18, 31, 0.12);
+      --color-warning: #E9A319;
+      --color-warning-bg: rgba(233, 163, 25, 0.15);
+      --color-stable: #4A6FA5;
+      --color-stable-bg: rgba(74, 111, 165, 0.12);
+      --color-info: #1D4E89;
+      --color-info-bg: rgba(29, 78, 137, 0.1);
+
+      /* Text */
+      --color-text: #1A1A1A;
+      --color-text-secondary: #4A4A4A;
+      --color-text-muted: #6B6B6B;
+      --color-text-inverse: #FFFFFF;
+
+      /* Typography */
+      --font-display: 'Black Ops One', 'Arial Black', sans-serif;
+      --font-body-he: 'Heebo', 'Arial', sans-serif;
+      --font-body-en: 'Rubik', 'Arial', sans-serif;
+
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+
+      /* Radius */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+
+      /* Shadows */
+      --shadow-card: 0 2px 8px rgba(74, 82, 64, 0.15), 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-lifted: 0 8px 24px rgba(74, 82, 64, 0.2), 0 4px 8px rgba(0,0,0,0.1);
+      --shadow-inset: inset 0 2px 4px rgba(0,0,0,0.06);
+    }
+
+    /* Base Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-body-he);
+      background-color: var(--color-canvas);
+      color: var(--color-text);
+      min-height: 100dvh;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* RTL/LTR Support */
+    [dir="ltr"] body {
+      font-family: var(--font-body-en);
+    }
+
+    /* Canvas Texture Background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+    }
+
+    /* =============================================
+       HEADER - Field Kit Lid Style
+       ============================================= */
+
+    .header {
+      background: linear-gradient(180deg, var(--color-slate) 0%, var(--color-slate-dark) 100%);
+      padding: var(--space-md) var(--space-lg);
+      padding-top: calc(var(--space-md) + env(safe-area-inset-top));
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--color-signal-orange) 0px,
+        var(--color-signal-orange) 20px,
+        var(--color-slate-dark) 20px,
+        var(--color-slate-dark) 40px
+      );
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--color-signal-orange);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2);
+    }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--color-text-inverse);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .lang-toggle {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius-sm);
+      padding: var(--space-xs) var(--space-sm);
+      color: var(--color-text-inverse);
+      font-family: var(--font-body-en);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* =============================================
+       MAIN CONTENT
+       ============================================= */
+
+    .main {
+      padding: var(--space-lg);
+      padding-bottom: calc(80px + var(--space-lg) + env(safe-area-inset-bottom));
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Section Headers - Stencil Style */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      color: var(--color-slate);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-stone) 0%, transparent 100%);
+    }
+
+    [dir="ltr"] .section-line {
+      background: linear-gradient(270deg, var(--color-stone) 0%, transparent 100%);
+    }
+
+    /* =============================================
+       ARTIFACT TYPE CARDS - Field Kit Compartments
+       ============================================= */
+
+    .artifact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .artifact-card {
+      background: var(--color-canvas);
+      border: 2px solid var(--color-stone-light);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .artifact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--color-stone);
+      transition: background 0.2s;
+    }
+
+    .artifact-card:hover {
+      border-color: var(--color-slate);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lifted);
+    }
+
+    .artifact-card:hover::before {
+      background: var(--color-signal-orange);
+    }
+
+    .artifact-card:active {
+      transform: translateY(0);
+    }
+
+    .artifact-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto var(--space-sm);
+      background: var(--color-canvas-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      border: 2px solid var(--color-stone-light);
+    }
+
+    .artifact-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--color-text);
+      margin-bottom: var(--space-xs);
+    }
+
+    .artifact-risk {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+
+    .risk-high {
+      background: var(--color-critical-bg);
+      color: var(--color-critical);
+      border: 1px solid var(--color-critical);
+    }
+
+    .risk-medium {
+      background: var(--color-warning-bg);
+      color: #9A6B00;
+      border: 1px solid var(--color-warning);
+    }
+
+    .risk-low {
+      background: var(--color-stable-bg);
+      color: var(--color-stable);
+      border: 1px solid var(--color-stable);
+    }
+
+    /* =============================================
+       QUICK ACTION BUTTONS - Emergency Style
+       ============================================= */
+
+    .quick-actions {
+      display: flex;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .action-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-md);
+      background: var(--color-slate);
+      border: none;
+      border-radius: var(--radius-md);
+      color: var(--color-text-inverse);
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .action-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+    }
+
+    .action-btn:hover {
+      background: var(--color-slate-light);
+      transform: translateY(-1px);
+    }
+
+    .action-btn:active {
+      transform: translateY(0);
+    }
+
+    .action-btn.primary {
+      background: var(--color-signal-orange);
+    }
+
+    .action-btn.primary:hover {
+      background: var(--color-signal-orange-light);
+    }
+
+    .action-icon {
+      font-size: 24px;
+    }
+
+    .action-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* =============================================
+       TRIAGE QUICK REFERENCE - Medical Chart Style
+       ============================================= */
+
+    .triage-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--color-canvas-darker);
+    }
+
+    .triage-header {
+      background: var(--color-slate-dark);
+      color: var(--color-text-inverse);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .triage-header-icon {
+      font-size: 20px;
+    }
+
+    .triage-header-title {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .triage-list {
+      padding: var(--space-md);
+    }
+
+    .triage-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-sm);
+      transition: background 0.2s;
+    }
+
+    .triage-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .triage-item:hover {
+      background: var(--color-canvas);
+    }
+
+    .triage-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-top: 4px;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 3px currentColor;
+      opacity: 0.3;
+    }
+
+    .triage-indicator.critical {
+      background: var(--color-critical);
+      box-shadow: 0 0 0 3px var(--color-critical-bg);
+      opacity: 1;
+    }
+
+    .triage-indicator.warning {
+      background: var(--color-warning);
+      box-shadow: 0 0 0 3px var(--color-warning-bg);
+      opacity: 1;
+    }
+
+    .triage-indicator.stable {
+      background: var(--color-stable);
+      box-shadow: 0 0 0 3px var(--color-stable-bg);
+      opacity: 1;
+    }
+
+    .triage-content {
+      flex: 1;
+    }
+
+    .triage-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .triage-desc {
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+    }
+
+    .triage-action {
+      font-size: 0.75rem;
+      color: var(--color-signal-orange);
+      font-weight: 600;
+      margin-top: var(--space-xs);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* =============================================
+       BOTTOM NAVIGATION - Rugged Tabs
+       ============================================= */
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--color-slate-dark);
+      padding: var(--space-sm);
+      padding-bottom: calc(var(--space-sm) + env(safe-area-inset-bottom));
+      display: flex;
+      justify-content: space-around;
+      z-index: 100;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
+    }
+
+    .bottom-nav::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--color-stone);
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: var(--space-sm) var(--space-md);
+      color: var(--color-stone-light);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .nav-item:hover {
+      color: var(--color-text-inverse);
+    }
+
+    .nav-item.active {
+      color: var(--color-signal-orange);
+    }
+
+    .nav-item.active::after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 24px;
+      height: 3px;
+      background: var(--color-signal-orange);
+      border-radius: 0 0 2px 2px;
+    }
+
+    .nav-icon {
+      font-size: 22px;
+    }
+
+    .nav-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    /* =============================================
+       PRESERVATION DETAIL VIEW
+       ============================================= */
+
+    .detail-section {
+      display: none;
+      margin-top: var(--space-2xl);
+    }
+
+    .detail-section.active {
+      display: block;
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .preservation-box {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 2px solid var(--color-slate);
+      overflow: hidden;
+      box-shadow: var(--shadow-lifted);
+    }
+
+    .preservation-header {
+      background: var(--color-slate);
+      color: white;
+      padding: var(--space-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .preservation-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(255,255,255,0.15);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .preservation-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .preservation-subtitle {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    .preservation-body {
+      padding: var(--space-lg);
+    }
+
+    .risk-factors {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-lg);
+    }
+
+    .risk-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .risk-tag.humidity {
+      background: var(--color-info-bg);
+      color: var(--color-info);
+      border: 1px solid var(--color-info);
+    }
+
+    .risk-tag.temperature {
+      background: var(--color-warning-bg);
+      color: #9A6B00;
+      border: 1px solid var(--color-warning);
+    }
+
+    .risk-tag.shock {
+      background: var(--color-critical-bg);
+      color: var(--color-critical);
+      border: 1px solid var(--color-critical);
+    }
+
+    .step-list {
+      counter-reset: step;
+    }
+
+    .step-item {
+      display: flex;
+      gap: var(--space-md);
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid var(--color-canvas-dark);
+    }
+
+    .step-item:last-child {
+      border-bottom: none;
+    }
+
+    .step-number {
+      counter-increment: step;
+      width: 28px;
+      height: 28px;
+      background: var(--color-slate);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .step-number::before {
+      content: counter(step);
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .step-desc {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+    }
+
+    /* =============================================
+       ANIMATIONS
+       ============================================= */
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .animate-fade {
+      animation: fadeIn 0.4s ease;
+    }
+
+    /* Card entrance animation */
+    .artifact-card {
+      animation: cardEnter 0.4s ease backwards;
+    }
+
+    .artifact-card:nth-child(1) { animation-delay: 0.1s; }
+    .artifact-card:nth-child(2) { animation-delay: 0.15s; }
+    .artifact-card:nth-child(3) { animation-delay: 0.2s; }
+    .artifact-card:nth-child(4) { animation-delay: 0.25s; }
+    .artifact-card:nth-child(5) { animation-delay: 0.3s; }
+    .artifact-card:nth-child(6) { animation-delay: 0.35s; }
+
+    @keyframes cardEnter {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* =============================================
+       RESPONSIVE - TABLET & DESKTOP
+       ============================================= */
+
+    @media (min-width: 400px) {
+      .artifact-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Tablet */
+    @media (min-width: 768px) {
+      .header-content {
+        max-width: 900px;
+      }
+
+      .main {
+        max-width: 900px;
+        padding: var(--space-xl);
+        padding-bottom: calc(80px + var(--space-xl));
+      }
+
+      .quick-actions {
+        max-width: 500px;
+      }
+
+      .artifact-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
+      }
+
+      .artifact-card {
+        padding: var(--space-xl) var(--space-lg);
+      }
+
+      .artifact-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 28px;
+      }
+
+      .triage-card {
+        max-width: 600px;
+      }
+    }
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+      }
+
+      .header-content {
+        max-width: 1200px;
+      }
+
+      .main {
+        max-width: 1200px;
+        padding-top: calc(80px + var(--space-xl));
+        padding-bottom: var(--space-2xl);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto 1fr;
+        gap: var(--space-xl);
+        align-items: start;
+      }
+
+      .quick-actions {
+        grid-column: 1 / -1;
+        max-width: 600px;
+        margin-bottom: 0;
+      }
+
+      .section-header:first-of-type,
+      .artifact-grid {
+        grid-column: 1;
+      }
+
+      .section-header:last-of-type,
+      .triage-card {
+        grid-column: 2;
+        grid-row: 2 / 4;
+      }
+
+      .artifact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 0;
+      }
+
+      .triage-card {
+        max-width: none;
+        position: sticky;
+        top: calc(80px + var(--space-xl));
+      }
+
+      .detail-section {
+        grid-column: 1 / -1;
+      }
+
+      /* Desktop: Transform bottom nav to sidebar */
+      .bottom-nav {
+        position: fixed;
+        top: 70px;
+        bottom: auto;
+        left: 0;
+        right: auto;
+        width: 80px;
+        height: calc(100vh - 70px);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: var(--space-lg) var(--space-sm);
+        gap: var(--space-sm);
+        border-radius: 0;
+      }
+
+      .bottom-nav::before {
+        top: 0;
+        bottom: 0;
+        left: auto;
+        right: 0;
+        width: 2px;
+        height: 100%;
+      }
+
+      .nav-item {
+        width: 100%;
+        padding: var(--space-md) var(--space-sm);
+      }
+
+      .nav-item.active::after {
+        top: 50%;
+        left: auto;
+        right: -2px;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 24px;
+        border-radius: 2px 0 0 2px;
+      }
+
+      /* Offset main content for sidebar */
+      .main {
+        margin-left: 80px;
+        margin-right: auto;
+        padding-left: var(--space-xl);
+      }
+    }
+
+    /* Large Desktop */
+    @media (min-width: 1400px) {
+      .main {
+        max-width: 1400px;
+        grid-template-columns: 1fr 400px;
+      }
+
+      .artifact-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .quick-actions {
+        max-width: 700px;
+      }
+    }
+
+    /* Ultra-wide: Center everything */
+    @media (min-width: 1800px) {
+      .main {
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: calc(80px + var(--space-xl));
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <div class="logo-icon">+</div>
+        <span class="logo-text">ArcheoTriage</span>
+      </div>
+      <button class="lang-toggle" onclick="toggleLang()">EN / עב</button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <button class="action-btn primary">
+        <span class="action-icon">+</span>
+        <span class="action-label">ממצא חדש</span>
+      </button>
+      <button class="action-btn">
+        <span class="action-icon">📷</span>
+        <span class="action-label">תיעוד</span>
+      </button>
+      <button class="action-btn">
+        <span class="action-icon">📚</span>
+        <span class="action-label">למידה</span>
+      </button>
+    </div>
+
+    <!-- Artifact Types Section -->
+    <div class="section-header">
+      <span class="section-title">סוגי ממצאים</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="artifact-grid">
+      <div class="artifact-card" onclick="showDetail('ceramics')">
+        <div class="artifact-icon">🏺</div>
+        <div class="artifact-name">חרסים</div>
+        <span class="artifact-risk risk-high">סיכון גבוה</span>
+      </div>
+
+      <div class="artifact-card" onclick="showDetail('metal')">
+        <div class="artifact-icon">🪙</div>
+        <div class="artifact-name">מתכות</div>
+        <span class="artifact-risk risk-high">סיכון גבוה</span>
+      </div>
+
+      <div class="artifact-card" onclick="showDetail('organic')">
+        <div class="artifact-icon">🦴</div>
+        <div class="artifact-name">אורגני</div>
+        <span class="artifact-risk risk-medium">סיכון בינוני</span>
+      </div>
+
+      <div class="artifact-card" onclick="showDetail('textile')">
+        <div class="artifact-icon">🧵</div>
+        <div class="artifact-name">טקסטיל</div>
+        <span class="artifact-risk risk-high">סיכון גבוה</span>
+      </div>
+
+      <div class="artifact-card" onclick="showDetail('scroll')">
+        <div class="artifact-icon">📜</div>
+        <div class="artifact-name">מגילות</div>
+        <span class="artifact-risk risk-high">קריטי</span>
+      </div>
+
+      <div class="artifact-card" onclick="showDetail('glass')">
+        <div class="artifact-icon">🫙</div>
+        <div class="artifact-name">זכוכית</div>
+        <span class="artifact-risk risk-medium">סיכון בינוני</span>
+      </div>
+    </div>
+
+    <!-- Triage Quick Reference -->
+    <div class="section-header">
+      <span class="section-title">מדריך מהיר</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="triage-card">
+      <div class="triage-header">
+        <span class="triage-header-icon">⚠️</span>
+        <span class="triage-header-title">גורמי סיכון עיקריים</span>
+      </div>
+      <div class="triage-list">
+        <div class="triage-item">
+          <div class="triage-indicator critical"></div>
+          <div class="triage-content">
+            <div class="triage-title">לחות</div>
+            <div class="triage-desc">מסוכן במיוחד למתכות ואורגניים</div>
+            <div class="triage-action">השתמש בסיליקה ג׳ל ←</div>
+          </div>
+        </div>
+        <div class="triage-item">
+          <div class="triage-indicator warning"></div>
+          <div class="triage-content">
+            <div class="triage-title">טמפרטורה</div>
+            <div class="triage-desc">שינויים קיצוניים גורמים לסדיקה</div>
+            <div class="triage-action">הצללה ובידוד ←</div>
+          </div>
+        </div>
+        <div class="triage-item">
+          <div class="triage-indicator stable"></div>
+          <div class="triage-content">
+            <div class="triage-title">זעזועים</div>
+            <div class="triage-desc">חרסים וזכוכית רגישים במיוחד</div>
+            <div class="triage-action">ריפוד מתאים ←</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail View (Hidden by default) -->
+    <div class="detail-section" id="ceramics-detail">
+      <div class="preservation-box">
+        <div class="preservation-header">
+          <div class="preservation-icon">🏺</div>
+          <div>
+            <div class="preservation-title">קופסת חרסים</div>
+            <div class="preservation-subtitle">בקרה מכנית ותרמית</div>
+          </div>
+        </div>
+        <div class="preservation-body">
+          <div class="risk-factors">
+            <span class="risk-tag shock">⚡ זעזועים</span>
+            <span class="risk-tag temperature">🌡️ טמפרטורה</span>
+            <span class="risk-tag humidity">💧 לחות</span>
+          </div>
+
+          <div class="step-list">
+            <div class="step-item">
+              <div class="step-number"></div>
+              <div class="step-content">
+                <div class="step-title">הכנת קופסה קשיחה</div>
+                <div class="step-desc">בחר קופסת פלסטיק עבה לפיזור אנרגיית פגיעה</div>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number"></div>
+              <div class="step-content">
+                <div class="step-title">ריפוד ספוג</div>
+                <div class="step-desc">הנח ספוג בצפיפות בינונית לבלימת זעזועים</div>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number"></div>
+              <div class="step-content">
+                <div class="step-title">חיתוך שקע מותאם</div>
+                <div class="step-desc">צור שקע בצורת הממצא - ללא לחץ על קצוות</div>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number"></div>
+              <div class="step-content">
+                <div class="step-title">עטיפת נייר נטול חומצה</div>
+                <div class="step-desc">הגנה כימית ומניעת תגובות איטיות</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="#" class="nav-item active">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">בית</span>
+    </a>
+    <a href="#" class="nav-item">
+      <span class="nav-icon">📋</span>
+      <span class="nav-label">מדריך</span>
+    </a>
+    <a href="#" class="nav-item">
+      <span class="nav-icon">📁</span>
+      <span class="nav-label">ממצאים</span>
+    </a>
+    <a href="#" class="nav-item">
+      <span class="nav-icon">📖</span>
+      <span class="nav-label">למידה</span>
+    </a>
+    <a href="#" class="nav-item">
+      <span class="nav-icon">⚙️</span>
+      <span class="nav-label">הגדרות</span>
+    </a>
+  </nav>
+
+  <script>
+    function toggleLang() {
+      const html = document.documentElement;
+      if (html.dir === 'rtl') {
+        html.dir = 'ltr';
+        html.lang = 'en';
+      } else {
+        html.dir = 'rtl';
+        html.lang = 'he';
+      }
+    }
+
+    function showDetail(type) {
+      // Hide all details
+      document.querySelectorAll('.detail-section').forEach(el => {
+        el.classList.remove('active');
+      });
+
+      // Show selected detail
+      const detail = document.getElementById(type + '-detail');
+      if (detail) {
+        detail.classList.add('active');
+        detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  </script>
+</body>
+</html>
