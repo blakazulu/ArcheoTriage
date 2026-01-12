@@ -7,6 +7,7 @@ export interface IdentificationResult {
   confidence: number
   risks: RiskType[]
   description: string
+  descriptionHe: string
   preservationUrgency: 'critical' | 'high' | 'medium' | 'low'
 }
 

@@ -14,20 +14,11 @@ interface IdentificationResult {
   confidence: number
   risks: RiskType[]
   description: string
+  descriptionHe: string
   preservationUrgency: 'critical' | 'high' | 'medium' | 'low'
 }
 
-function getIdentificationPrompt(language: string): string {
-  const isHebrew = language === 'he'
-
-  const descriptionInstruction = isHebrew
-    ? '<brief description in HEBREW of what you see, max 200 characters>'
-    : '<brief description in ENGLISH of what you see, max 200 characters>'
-
-  const languageNote = isHebrew
-    ? '\n\nIMPORTANT: Write the "description" field in HEBREW (עברית).'
-    : '\n\nIMPORTANT: Write the "description" field in ENGLISH.'
-
+function getIdentificationPrompt(): string {
   return `You are an expert archaeologist analyzing an artifact photo. Identify the artifact type and provide preservation guidance.
 
 IMPORTANT: You must respond with ONLY valid JSON, no additional text or markdown.
@@ -37,7 +28,8 @@ Analyze the image and return JSON in this exact format:
   "artifactType": "ceramics" | "metals" | "organic" | "textiles" | "scrolls",
   "confidence": <number 0-100>,
   "risks": ["humidity" | "temperature" | "shock" | "light" | "oxygen"],
-  "description": "${descriptionInstruction}",
+  "description": "<brief description in ENGLISH, max 200 characters>",
+  "descriptionHe": "<brief description in HEBREW, max 200 characters>",
   "preservationUrgency": "critical" | "high" | "medium" | "low"
 }
 
@@ -65,7 +57,8 @@ If you cannot identify the artifact clearly, default to:
 - artifactType: "organic" (most common archaeological finds)
 - confidence: 30
 - preservationUrgency: "high"
-${languageNote}
+
+IMPORTANT: You MUST provide BOTH "description" (in English) AND "descriptionHe" (in Hebrew/עברית) fields.
 
 Respond with JSON only.`
 }
@@ -143,7 +136,7 @@ export const handler: Handler = async (event) => {
 
     // Call Gemini Vision
     const result = await model.generateContent([
-      getIdentificationPrompt(language),
+      getIdentificationPrompt(),
       {
         inlineData: {
           mimeType,
@@ -200,9 +193,8 @@ export const handler: Handler = async (event) => {
         artifactType: 'organic',
         confidence: 30,
         risks: ['humidity', 'temperature'],
-        description: language === 'he'
-          ? 'לא ניתן לזהות את הממצא בבירור. מטופל כחומר אורגני לצורכי בטיחות.'
-          : 'Unable to clearly identify artifact. Treating as organic material for safety.',
+        description: 'Unable to clearly identify artifact. Treating as organic material for safety.',
+        descriptionHe: 'לא ניתן לזהות את הממצא בבירור. מטופל כחומר אורגני לצורכי בטיחות.',
         preservationUrgency: 'high',
       }
     }

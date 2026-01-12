@@ -6,7 +6,7 @@ import { useArtifactIdentification } from '../hooks/useArtifactIdentification'
 import { artifacts } from '../data/artifacts'
 
 export default function Identify() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const navigate = useNavigate()
   const fileInputRef = useRef<HTMLInputElement>(null)
   const cameraInputRef = useRef<HTMLInputElement>(null)
@@ -56,10 +56,11 @@ export default function Identify() {
       sessionStorage.setItem('ai-prefill-photo', selectedImage)
     }
 
-    // Navigate to AddFinding with pre-filled data
+    // Navigate to AddFinding with pre-filled data (use language-appropriate description)
+    const description = i18n.language === 'he' ? result.descriptionHe : result.description
     const params = new URLSearchParams({
       artifactType: result.artifactType,
-      description: result.description,
+      description,
       risks: result.risks.join(','),
       fromAI: 'true',
     })
@@ -203,7 +204,9 @@ export default function Identify() {
 
               {/* Description */}
               <div className="p-4 border-b border-canvas-darker">
-                <p className="text-sm text-gray-600">{result.description}</p>
+                <p className="text-sm text-gray-600">
+                  {i18n.language === 'he' ? result.descriptionHe : result.description}
+                </p>
               </div>
 
               {/* Risks */}
