@@ -9,12 +9,11 @@ import {
   orderBy,
 } from 'firebase/firestore'
 import { db } from '../config/firebase'
-import { getDeviceId } from './deviceId'
 import type { Finding } from '../types/finding'
 
+// Single shared collection for all users
 function getFindingsCollection() {
-  const deviceId = getDeviceId()
-  return collection(db, 'devices', deviceId, 'findings')
+  return collection(db, 'findings')
 }
 
 export async function loadFindingsFromFirestore(): Promise<Finding[]> {
