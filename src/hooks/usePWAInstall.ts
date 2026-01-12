@@ -8,9 +8,15 @@ interface BeforeInstallPromptEvent extends Event {
 const DISMISS_KEY = 'archeotriage_install_dismissed'
 const DISMISS_DURATION = 7 * 24 * 60 * 60 * 1000 // 7 days
 
+function isMobileDevice(): boolean {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+    (window.innerWidth <= 768)
+}
+
 export function usePWAInstall() {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null)
   const [isInstalled, setIsInstalled] = useState(false)
+  const [isMobile, setIsMobile] = useState(isMobileDevice)
   const [isDismissed, setIsDismissed] = useState(() => {
     try {
       const dismissed = localStorage.getItem(DISMISS_KEY)
@@ -40,12 +46,18 @@ export function usePWAInstall() {
       setDeferredPrompt(null)
     }
 
+    const handleResize = () => {
+      setIsMobile(isMobileDevice())
+    }
+
     window.addEventListener('beforeinstallprompt', handleBeforeInstall)
     window.addEventListener('appinstalled', handleAppInstalled)
+    window.addEventListener('resize', handleResize)
 
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstall)
       window.removeEventListener('appinstalled', handleAppInstalled)
+      window.removeEventListener('resize', handleResize)
     }
   }, [])
 
@@ -78,7 +90,7 @@ export function usePWAInstall() {
   }, [])
 
   return {
-    isInstallable: !!deferredPrompt && !isInstalled && !isDismissed,
+    isInstallable: !!deferredPrompt && !isInstalled && !isDismissed && isMobile,
     isInstalled,
     promptInstall,
     dismissPrompt,
