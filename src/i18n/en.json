@@ -458,5 +458,28 @@
     "edit": "Edit",
     "view": "View",
     "loading": "Loading..."
+  },
+  "pwa": {
+    "install": {
+      "title": "Install ArcheoTriage",
+      "description": "Add to your home screen for quick access",
+      "button": "Install"
+    }
+  },
+  "errors": {
+    "title": "Something Went Wrong",
+    "appLevelMessage": "The application encountered an unexpected error. Please try reloading the page.",
+    "pageLevelMessage": "This page encountered an error. You can try again or go back.",
+    "technicalDetails": "Technical Details",
+    "tryAgain": "Try Again",
+    "goBack": "Go Back",
+    "goHome": "Go to Home",
+    "reloadPage": "Reload Page"
+  },
+  "validation": {
+    "required": "This field is required",
+    "minLength": "Must be at least {{count}} characters",
+    "maxLength": "Must be at most {{count}} characters",
+    "invalid": "Invalid format"
   }
 }

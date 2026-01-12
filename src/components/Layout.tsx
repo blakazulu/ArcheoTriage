@@ -1,10 +1,12 @@
 import { Outlet } from 'react-router'
 import Header from './Header'
 import BottomNav from './BottomNav'
+import InstallPromptBanner from './InstallPromptBanner'
 
 export default function Layout() {
   return (
     <div className="min-h-screen">
+      <InstallPromptBanner />
       <Header />
       <div className="lg:pl-20">
         <main className="px-6 py-6 pb-24 max-w-[600px] mx-auto lg:max-w-[1200px] lg:pt-24 lg:pb-12">

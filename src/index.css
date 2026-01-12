@@ -109,6 +109,21 @@ body {
   animation: slideUp 0.3s ease;
 }
 
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s ease;
+}
+
 /* Gradient Overlay for Buttons */
 .btn-gradient::after {
   content: '';

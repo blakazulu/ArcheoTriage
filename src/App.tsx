@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { useEffect } from 'react'
 import Layout from './components/Layout'
+import ErrorBoundary from './components/ErrorBoundary'
 import Home from './pages/Home'
 import Guide from './pages/Guide'
 import ArtifactDetail from './pages/ArtifactDetail'
@@ -24,16 +25,16 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="guide" element={<Guide />} />
-        <Route path="guide/:artifactId" element={<ArtifactDetail />} />
-        <Route path="findings" element={<Findings />} />
-        <Route path="findings/add" element={<AddFinding />} />
-        <Route path="findings/:findingId" element={<FindingDetail />} />
-        <Route path="education" element={<Education />} />
-        <Route path="education/:lessonId" element={<LessonDetail />} />
-        <Route path="education/:lessonId/quiz" element={<Quiz />} />
-        <Route path="identify" element={<Identify />} />
+        <Route index element={<ErrorBoundary level="page"><Home /></ErrorBoundary>} />
+        <Route path="guide" element={<ErrorBoundary level="page"><Guide /></ErrorBoundary>} />
+        <Route path="guide/:artifactId" element={<ErrorBoundary level="page"><ArtifactDetail /></ErrorBoundary>} />
+        <Route path="findings" element={<ErrorBoundary level="page"><Findings /></ErrorBoundary>} />
+        <Route path="findings/add" element={<ErrorBoundary level="page"><AddFinding /></ErrorBoundary>} />
+        <Route path="findings/:findingId" element={<ErrorBoundary level="page"><FindingDetail /></ErrorBoundary>} />
+        <Route path="education" element={<ErrorBoundary level="page"><Education /></ErrorBoundary>} />
+        <Route path="education/:lessonId" element={<ErrorBoundary level="page"><LessonDetail /></ErrorBoundary>} />
+        <Route path="education/:lessonId/quiz" element={<ErrorBoundary level="page"><Quiz /></ErrorBoundary>} />
+        <Route path="identify" element={<ErrorBoundary level="page"><Identify /></ErrorBoundary>} />
       </Route>
     </Routes>
   )

@@ -458,5 +458,28 @@
     "edit": "עריכה",
     "view": "צפייה",
     "loading": "טוען..."
+  },
+  "pwa": {
+    "install": {
+      "title": "התקן את ArcheoTriage",
+      "description": "הוסף למסך הבית לגישה מהירה",
+      "button": "התקן"
+    }
+  },
+  "errors": {
+    "title": "משהו השתבש",
+    "appLevelMessage": "האפליקציה נתקלה בשגיאה בלתי צפויה. אנא נסה לטעון מחדש את הדף.",
+    "pageLevelMessage": "דף זה נתקל בשגיאה. תוכל לנסות שוב או לחזור אחורה.",
+    "technicalDetails": "פרטים טכניים",
+    "tryAgain": "נסה שוב",
+    "goBack": "חזור אחורה",
+    "goHome": "חזור לדף הבית",
+    "reloadPage": "טען דף מחדש"
+  },
+  "validation": {
+    "required": "שדה חובה",
+    "minLength": "חייב להכיל לפחות {{count}} תווים",
+    "maxLength": "חייב להכיל לכל היותר {{count}} תווים",
+    "invalid": "פורמט לא תקין"
   }
 }
