@@ -32,7 +32,7 @@ export default function Findings() {
           {t('findings.title')}
         </h1>
         <Link
-          to="/findings/add"
+          to="/identify"
           className="flex items-center gap-2 px-4 py-2 bg-signal-orange text-white rounded-lg font-semibold hover:bg-signal-orange-light transition-colors no-underline text-sm"
         >
           <Plus className="w-4 h-4" />
@@ -79,7 +79,7 @@ export default function Findings() {
           </p>
 
           <Link
-            to="/findings/add"
+            to="/identify"
             className="inline-flex items-center gap-2 px-6 py-3 bg-signal-orange text-white rounded-lg font-semibold hover:bg-signal-orange-light transition-colors no-underline"
           >
             <Plus className="w-5 h-5" />
