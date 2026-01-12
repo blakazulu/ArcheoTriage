@@ -190,7 +190,37 @@
   "findings": {
     "title": "My Findings",
     "empty": "No findings yet",
-    "addFirst": "Add your first finding"
+    "addFirst": "Add your first finding",
+    "add": "Add Finding",
+    "addNew": "New Finding",
+    "search": "Search findings...",
+    "noResults": "No findings match your search"
+  },
+  "findingForm": {
+    "photo": "Photo",
+    "uploadPhoto": "Upload Photo",
+    "removePhoto": "Remove photo",
+    "photoTooLarge": "Photo is too large. Maximum size is 2MB.",
+    "photoError": "Failed to load photo. Please try again.",
+    "artifactType": "Artifact Type",
+    "title": "Title",
+    "titlePlaceholder": "Give this finding a name",
+    "location": "Location",
+    "locationPlaceholder": "Where was this found?",
+    "description": "Description",
+    "descriptionPlaceholder": "Describe the finding...",
+    "riskNotes": "Risk Notes",
+    "riskNotesPlaceholder": "Any special concerns or observations?"
+  },
+  "findingDetail": {
+    "notFound": "Finding not found",
+    "edit": "Edit Finding",
+    "description": "Description",
+    "risks": "Risk Factors",
+    "riskNotes": "Risk Notes",
+    "viewPreservation": "View Preservation Guide",
+    "deleteConfirmTitle": "Delete Finding?",
+    "deleteConfirmMessage": "This action cannot be undone. All data for this finding will be permanently removed."
   },
   "education": {
     "title": "Learning Center",

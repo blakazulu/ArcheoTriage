@@ -6,6 +6,8 @@ import Home from './pages/Home'
 import Guide from './pages/Guide'
 import ArtifactDetail from './pages/ArtifactDetail'
 import Findings from './pages/Findings'
+import AddFinding from './pages/AddFinding'
+import FindingDetail from './pages/FindingDetail'
 import Education from './pages/Education'
 import Identify from './pages/Identify'
 
@@ -24,6 +26,8 @@ function App() {
         <Route path="guide" element={<Guide />} />
         <Route path="guide/:artifactId" element={<ArtifactDetail />} />
         <Route path="findings" element={<Findings />} />
+        <Route path="findings/add" element={<AddFinding />} />
+        <Route path="findings/:findingId" element={<FindingDetail />} />
         <Route path="education" element={<Education />} />
         <Route path="identify" element={<Identify />} />
       </Route>

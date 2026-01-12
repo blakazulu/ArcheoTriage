@@ -190,7 +190,37 @@
   "findings": {
     "title": "הממצאים שלי",
     "empty": "אין ממצאים עדיין",
-    "addFirst": "הוסף את הממצא הראשון שלך"
+    "addFirst": "הוסף את הממצא הראשון שלך",
+    "add": "הוסף ממצא",
+    "addNew": "ממצא חדש",
+    "search": "חיפוש ממצאים...",
+    "noResults": "לא נמצאו ממצאים תואמים"
+  },
+  "findingForm": {
+    "photo": "תמונה",
+    "uploadPhoto": "העלה תמונה",
+    "removePhoto": "הסר תמונה",
+    "photoTooLarge": "התמונה גדולה מדי. הגודל המרבי הוא 2MB.",
+    "photoError": "טעינת התמונה נכשלה. נסה שוב.",
+    "artifactType": "סוג ממצא",
+    "title": "כותרת",
+    "titlePlaceholder": "תן שם לממצא זה",
+    "location": "מיקום",
+    "locationPlaceholder": "היכן נמצא?",
+    "description": "תיאור",
+    "descriptionPlaceholder": "תאר את הממצא...",
+    "riskNotes": "הערות סיכון",
+    "riskNotesPlaceholder": "האם יש חששות או תצפיות מיוחדות?"
+  },
+  "findingDetail": {
+    "notFound": "הממצא לא נמצא",
+    "edit": "עריכת ממצא",
+    "description": "תיאור",
+    "risks": "גורמי סיכון",
+    "riskNotes": "הערות סיכון",
+    "viewPreservation": "צפה במדריך השימור",
+    "deleteConfirmTitle": "למחוק את הממצא?",
+    "deleteConfirmMessage": "לא ניתן לבטל פעולה זו. כל הנתונים של ממצא זה יימחקו לצמיתות."
   },
   "education": {
     "title": "מרכז למידה",
