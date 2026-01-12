@@ -193,6 +193,7 @@
     "addFirst": "Add your first finding",
     "add": "Add Finding",
     "addNew": "New Finding",
+    "prefilledFromAI": "Pre-filled from AI identification",
     "search": "Search findings...",
     "noResults": "No findings match your search"
   },
@@ -228,10 +229,23 @@
   },
   "identify": {
     "title": "Identify Artifact",
+    "subtitle": "Take or upload a photo to identify your artifact",
     "takePhoto": "Take Photo",
     "uploadPhoto": "Upload Photo",
+    "photoTooLarge": "Photo is too large. Maximum size is 5MB.",
     "analyzing": "Analyzing...",
-    "comingSoon": "AI identification coming soon"
+    "error": "Identification Failed",
+    "confidence": "confidence",
+    "riskFactors": "Risk Factors",
+    "viewGuide": "View Preservation Guide",
+    "saveToFindings": "Save to Findings",
+    "tryAgain": "Try Another Photo",
+    "urgency": {
+      "critical": "Critical",
+      "high": "High Priority",
+      "medium": "Medium",
+      "low": "Low Priority"
+    }
   },
   "common": {
     "back": "Back",

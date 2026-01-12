@@ -193,6 +193,7 @@
     "addFirst": "הוסף את הממצא הראשון שלך",
     "add": "הוסף ממצא",
     "addNew": "ממצא חדש",
+    "prefilledFromAI": "מולא מראש מזיהוי AI",
     "search": "חיפוש ממצאים...",
     "noResults": "לא נמצאו ממצאים תואמים"
   },
@@ -228,10 +229,23 @@
   },
   "identify": {
     "title": "זיהוי ממצא",
+    "subtitle": "צלם או העלה תמונה כדי לזהות את הממצא שלך",
     "takePhoto": "צלם תמונה",
     "uploadPhoto": "העלה תמונה",
+    "photoTooLarge": "התמונה גדולה מדי. הגודל המרבי הוא 5MB.",
     "analyzing": "מנתח...",
-    "comingSoon": "זיהוי AI יהיה זמין בקרוב"
+    "error": "הזיהוי נכשל",
+    "confidence": "וודאות",
+    "riskFactors": "גורמי סיכון",
+    "viewGuide": "צפה במדריך השימור",
+    "saveToFindings": "שמור לממצאים",
+    "tryAgain": "נסה תמונה אחרת",
+    "urgency": {
+      "critical": "קריטי",
+      "high": "עדיפות גבוהה",
+      "medium": "בינוני",
+      "low": "עדיפות נמוכה"
+    }
   },
   "common": {
     "back": "חזרה",
