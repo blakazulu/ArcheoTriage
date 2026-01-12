@@ -1,5 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
 import type { Finding, FindingInput } from '../types/finding'
+import {
+  loadFindingsFromFirestore,
+  saveFindingToFirestore,
+  updateFindingInFirestore,
+  deleteFindingFromFirestore,
+} from '../services/findingsService'
 
 const STORAGE_KEY = 'archeotriage_findings'
 
@@ -7,7 +13,7 @@ function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).substring(2, 11)}`
 }
 
-function loadFindings(): Finding[] {
+function loadFindingsLocal(): Finding[] {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
     return stored ? JSON.parse(stored) : []
@@ -16,13 +22,11 @@ function loadFindings(): Finding[] {
   }
 }
 
-function saveFindings(findings: Finding[]): boolean {
+function saveFindingsLocal(findings: Finding[]): void {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(findings))
-    return true
   } catch (error) {
-    console.error('Failed to save findings:', error)
-    return false
+    console.error('Failed to save findings locally:', error)
   }
 }
 
@@ -31,8 +35,24 @@ export function useFindings() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    setFindings(loadFindings())
-    setIsLoading(false)
+    async function loadData() {
+      // Try Firestore first, fallback to localStorage
+      const firestoreData = await loadFindingsFromFirestore()
+      if (firestoreData.length > 0) {
+        setFindings(firestoreData)
+        saveFindingsLocal(firestoreData) // Sync to localStorage
+      } else {
+        // Load from localStorage and sync to Firestore
+        const localData = loadFindingsLocal()
+        setFindings(localData)
+        // Upload local data to Firestore (migration)
+        for (const finding of localData) {
+          saveFindingToFirestore(finding)
+        }
+      }
+      setIsLoading(false)
+    }
+    loadData()
   }, [])
 
   const addFinding = useCallback((input: FindingInput): Finding => {
@@ -46,31 +66,34 @@ export function useFindings() {
 
     setFindings(prev => {
       const updated = [newFinding, ...prev]
-      saveFindings(updated)
+      saveFindingsLocal(updated)
       return updated
     })
+
+    // Sync to Firestore
+    saveFindingToFirestore(newFinding)
 
     return newFinding
   }, [])
 
   const updateFinding = useCallback((id: string, input: Partial<FindingInput>): Finding | null => {
     let updatedFinding: Finding | null = null
+    const updateData = { ...input, updatedAt: new Date().toISOString() }
 
     setFindings(prev => {
       const updated = prev.map(f => {
         if (f.id === id) {
-          updatedFinding = {
-            ...f,
-            ...input,
-            updatedAt: new Date().toISOString(),
-          }
+          updatedFinding = { ...f, ...updateData }
           return updatedFinding
         }
         return f
       })
-      saveFindings(updated)
+      saveFindingsLocal(updated)
       return updated
     })
+
+    // Sync to Firestore
+    updateFindingInFirestore(id, updateData)
 
     return updatedFinding
   }, [])
@@ -86,9 +109,14 @@ export function useFindings() {
         }
         return true
       })
-      saveFindings(updated)
+      saveFindingsLocal(updated)
       return updated
     })
+
+    // Sync to Firestore
+    if (deleted) {
+      deleteFindingFromFirestore(id)
+    }
 
     return deleted
   }, [])

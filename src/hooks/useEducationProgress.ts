@@ -1,20 +1,16 @@
 import { useState, useEffect, useCallback } from 'react'
+import {
+  loadProgressFromFirestore,
+  saveProgressToFirestore,
+  type EducationProgress,
+  type LessonProgress,
+} from '../services/educationService'
+
+export type { LessonProgress }
 
 const STORAGE_KEY = 'archeotriage_education_progress'
 
-export interface LessonProgress {
-  lessonId: string
-  completed: boolean
-  completedAt: string | null
-  quizScore: number | null
-  quizCompletedAt: string | null
-}
-
-interface EducationProgress {
-  lessons: Record<string, LessonProgress>
-}
-
-function loadProgress(): EducationProgress {
+function loadProgressLocal(): EducationProgress {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
     return stored ? JSON.parse(stored) : { lessons: {} }
@@ -23,13 +19,11 @@ function loadProgress(): EducationProgress {
   }
 }
 
-function saveProgress(progress: EducationProgress): boolean {
+function saveProgressLocal(progress: EducationProgress): void {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(progress))
-    return true
   } catch (error) {
-    console.error('Failed to save education progress:', error)
-    return false
+    console.error('Failed to save education progress locally:', error)
   }
 }
 
@@ -38,8 +32,23 @@ export function useEducationProgress() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    setProgress(loadProgress())
-    setIsLoading(false)
+    async function loadData() {
+      // Try Firestore first, fallback to localStorage
+      const firestoreData = await loadProgressFromFirestore()
+      if (Object.keys(firestoreData.lessons).length > 0) {
+        setProgress(firestoreData)
+        saveProgressLocal(firestoreData) // Sync to localStorage
+      } else {
+        // Load from localStorage and sync to Firestore
+        const localData = loadProgressLocal()
+        setProgress(localData)
+        if (Object.keys(localData.lessons).length > 0) {
+          saveProgressToFirestore(localData)
+        }
+      }
+      setIsLoading(false)
+    }
+    loadData()
   }, [])
 
   const markLessonComplete = useCallback((lessonId: string) => {
@@ -58,7 +67,8 @@ export function useEducationProgress() {
           },
         },
       }
-      saveProgress(updated)
+      saveProgressLocal(updated)
+      saveProgressToFirestore(updated)
       return updated
     })
   }, [])
@@ -79,7 +89,8 @@ export function useEducationProgress() {
           },
         },
       }
-      saveProgress(updated)
+      saveProgressLocal(updated)
+      saveProgressToFirestore(updated)
       return updated
     })
   }, [])
@@ -106,7 +117,8 @@ export function useEducationProgress() {
 
   const resetProgress = useCallback(() => {
     const empty: EducationProgress = { lessons: {} }
-    saveProgress(empty)
+    saveProgressLocal(empty)
+    saveProgressToFirestore(empty)
     setProgress(empty)
   }, [])
 
