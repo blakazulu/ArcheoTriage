@@ -225,7 +225,210 @@
   },
   "education": {
     "title": "Learning Center",
-    "comingSoon": "Coming soon - Lessons and quizzes"
+    "yourProgress": "Your Progress",
+    "lessonsCompleted": "lessons completed",
+    "quizzesPassed": "quizzes passed",
+    "lessons": "Lessons",
+    "minutes": "min",
+    "completed": "Completed",
+    "quizScore": "Quiz Score",
+    "markComplete": "Mark as Complete",
+    "takeQuiz": "Take Quiz",
+    "retakeQuiz": "Retake Quiz",
+    "viewPreservationGuide": "View Preservation Guide",
+    "lessonNotFound": "Lesson not found",
+    "quizNotFound": "Quiz not found",
+    "question": "Question",
+    "nextQuestion": "Next Question",
+    "seeResults": "See Results",
+    "quizPassed": "Great Job!",
+    "quizTryAgain": "Keep Learning!",
+    "yourScore": "Your Score",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "backToLesson": "Back to Lesson",
+    "allLessons": "All Lessons",
+    "lessonSubtitle": {
+      "ceramics": "Protecting pottery and clay artifacts",
+      "metals": "Preventing corrosion and oxidation",
+      "organic": "Preserving bone, wood, and natural materials",
+      "textiles": "Caring for ancient fabrics and fibers",
+      "scrolls": "Handling delicate documents safely"
+    }
+  },
+  "lessons": {
+    "ceramics": {
+      "section1": {
+        "title": "Why Ceramics Are Fragile",
+        "content": "Ceramics have survived thousands of years underground in stable conditions. When unearthed, they face sudden environmental changes.\n\nThe main threats are mechanical shock (breaking), thermal stress (temperature changes causing cracks), and salt crystallization from moisture changes."
+      },
+      "section2": {
+        "title": "Immediate Field Actions",
+        "content": "Never clean ceramics in the field - dirt often holds fragments together.\n\nSupport the entire piece when lifting. Use both hands and keep it level. If cracked, do not attempt to separate pieces."
+      },
+      "section3": {
+        "title": "Proper Storage",
+        "content": "Use rigid plastic containers with custom-cut foam padding. The artifact should not move when the box is tilted.\n\nWrap in acid-free tissue paper. Store away from direct sunlight and temperature extremes."
+      }
+    },
+    "metals": {
+      "section1": {
+        "title": "Understanding Metal Corrosion",
+        "content": "Archaeological metals are chemically unstable. Exposure to oxygen and moisture triggers rapid corrosion.\n\nBronze disease, iron rust, and silver tarnish can destroy artifacts within hours of excavation if not properly handled."
+      },
+      "section2": {
+        "title": "Controlling the Environment",
+        "content": "Humidity is the enemy. Keep relative humidity below 40% using silica gel packets.\n\nNever touch metals with bare hands - oils and salts from skin accelerate corrosion. Always use nitrile gloves."
+      },
+      "section3": {
+        "title": "Safe Storage Methods",
+        "content": "Seal metals in airtight containers with desiccants. Use chemically inert padding - never cotton or wool.\n\nMonitor for color changes which indicate active corrosion. Document any changes immediately."
+      }
+    },
+    "organic": {
+      "section1": {
+        "title": "Organic Material Sensitivity",
+        "content": "Bone, wood, leather, and plant materials are extremely sensitive to environmental changes.\n\nThey can crack from drying too fast, or develop mold from excess moisture. Temperature swings cause expansion and contraction damage."
+      },
+      "section2": {
+        "title": "Maintaining Moisture Balance",
+        "content": "Keep organic materials at the moisture level they were found. If wet, keep them wet. If dry, keep them dry.\n\nWrap wet organics in damp (not wet) cotton or paper towels, then seal in plastic bags."
+      },
+      "section3": {
+        "title": "Handling Guidelines",
+        "content": "Minimize handling - every touch causes damage. Support fragile items on rigid boards.\n\nNever attempt to unfold, unroll, or separate stuck materials. Leave all cleaning to professional conservators."
+      }
+    },
+    "textiles": {
+      "section1": {
+        "title": "Textile Vulnerabilities",
+        "content": "Ancient textiles are among the most fragile artifacts. Fibers become brittle over time and can crumble at a touch.\n\nLight causes fading and fiber breakdown. Even brief exposure to UV can cause irreversible damage."
+      },
+      "section2": {
+        "title": "Light and Air Protection",
+        "content": "Store textiles in complete darkness. Use opaque containers or wrap in acid-free tissue.\n\nAvoid folding - roll textiles on acid-free tubes instead. Folds create permanent creases and weak points."
+      },
+      "section3": {
+        "title": "Supporting Fragile Fabrics",
+        "content": "Place textiles on flat, padded surfaces. Never hang or suspend ancient fabrics.\n\nIf a textile is stuck to soil or another surface, do not attempt separation. Transport the entire block to a lab."
+      }
+    },
+    "scrolls": {
+      "section1": {
+        "title": "Critical Handling Rules",
+        "content": "Scrolls and documents require the highest level of care. One wrong move can destroy thousands of years of history.\n\nThe golden rule: NEVER attempt to open, unroll, or unfold a scroll in the field. This is exclusively laboratory work."
+      },
+      "section2": {
+        "title": "Environmental Stability",
+        "content": "Maintain constant temperature and humidity. Fluctuations cause papyrus and parchment to expand and contract, leading to cracking.\n\nKeep away from all light sources. Even indirect light accelerates degradation of inks and fibers."
+      },
+      "section3": {
+        "title": "Transport Requirements",
+        "content": "Support scrolls on rigid, flat surfaces that span their entire length. No part should hang unsupported.\n\nUse sealed containers with climate control. Transport should be vibration-free - hand-carry when possible."
+      }
+    }
+  },
+  "quizzes": {
+    "ceramics": {
+      "q1": {
+        "question": "What should you do if you find a cracked ceramic artifact?",
+        "a": "Carefully separate the pieces for easier transport",
+        "b": "Keep pieces together and do not attempt separation",
+        "c": "Glue the pieces together in the field"
+      },
+      "q2": {
+        "question": "Why shouldn't you clean ceramics in the field?",
+        "a": "It takes too much time",
+        "b": "Water damages all ceramics",
+        "c": "Dirt often holds fragments together"
+      },
+      "q3": {
+        "question": "How should a properly packed ceramic artifact behave when tilted?",
+        "a": "It should not move at all",
+        "b": "It should roll slightly",
+        "c": "It should slide to one side"
+      }
+    },
+    "metals": {
+      "q1": {
+        "question": "What is the main enemy of archaeological metals?",
+        "a": "Humidity and moisture",
+        "b": "Cold temperatures",
+        "c": "Darkness"
+      },
+      "q2": {
+        "question": "Why should you never touch metals with bare hands?",
+        "a": "They might be hot",
+        "b": "Skin oils accelerate corrosion",
+        "c": "It's considered disrespectful"
+      },
+      "q3": {
+        "question": "What does a color change on metal indicate?",
+        "a": "The metal is stabilizing",
+        "b": "Normal aging process",
+        "c": "Active corrosion requiring attention"
+      }
+    },
+    "organic": {
+      "q1": {
+        "question": "If you find a wet organic artifact, what should you do?",
+        "a": "Dry it immediately in the sun",
+        "b": "Keep it wet until professional treatment",
+        "c": "Freeze it for later"
+      },
+      "q2": {
+        "question": "Why is minimal handling important for organic materials?",
+        "a": "Every touch causes damage",
+        "b": "They might be contagious",
+        "c": "It saves time"
+      },
+      "q3": {
+        "question": "Should you attempt to unfold stuck organic materials?",
+        "a": "Yes, carefully with tweezers",
+        "b": "Only if they're dry",
+        "c": "No, leave this to professional conservators"
+      }
+    },
+    "textiles": {
+      "q1": {
+        "question": "How should ancient textiles be stored?",
+        "a": "Hanging to prevent creases",
+        "b": "Folded neatly in boxes",
+        "c": "Rolled on acid-free tubes in darkness"
+      },
+      "q2": {
+        "question": "What type of damage does light cause to textiles?",
+        "a": "Fading and fiber breakdown",
+        "b": "Mold growth",
+        "c": "Shrinkage"
+      },
+      "q3": {
+        "question": "If a textile is stuck to soil, what should you do?",
+        "a": "Carefully peel it off",
+        "b": "Transport the entire block to a lab",
+        "c": "Wash it gently with water"
+      }
+    },
+    "scrolls": {
+      "q1": {
+        "question": "Should you ever attempt to open a scroll in the field?",
+        "a": "Never - this is exclusively laboratory work",
+        "b": "Yes, if you're very careful",
+        "c": "Only if it's already partially open"
+      },
+      "q2": {
+        "question": "Why are temperature fluctuations dangerous for scrolls?",
+        "a": "They attract insects",
+        "b": "They cause discoloration",
+        "c": "They cause expansion and contraction leading to cracking"
+      },
+      "q3": {
+        "question": "How should scrolls be transported?",
+        "a": "In a padded bag",
+        "b": "Fully supported on rigid flat surfaces, vibration-free",
+        "c": "Rolled tightly in plastic wrap"
+      }
+    }
   },
   "identify": {
     "title": "Identify Artifact",

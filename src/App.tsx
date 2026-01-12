@@ -9,6 +9,8 @@ import Findings from './pages/Findings'
 import AddFinding from './pages/AddFinding'
 import FindingDetail from './pages/FindingDetail'
 import Education from './pages/Education'
+import LessonDetail from './pages/LessonDetail'
+import Quiz from './pages/Quiz'
 import Identify from './pages/Identify'
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
         <Route path="findings/add" element={<AddFinding />} />
         <Route path="findings/:findingId" element={<FindingDetail />} />
         <Route path="education" element={<Education />} />
+        <Route path="education/:lessonId" element={<LessonDetail />} />
+        <Route path="education/:lessonId/quiz" element={<Quiz />} />
         <Route path="identify" element={<Identify />} />
       </Route>
     </Routes>
