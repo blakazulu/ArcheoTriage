@@ -17,7 +17,18 @@ interface IdentificationResult {
   preservationUrgency: 'critical' | 'high' | 'medium' | 'low'
 }
 
-const IDENTIFICATION_PROMPT = `You are an expert archaeologist analyzing an artifact photo. Identify the artifact type and provide preservation guidance.
+function getIdentificationPrompt(language: string): string {
+  const isHebrew = language === 'he'
+
+  const descriptionInstruction = isHebrew
+    ? '<brief description in HEBREW of what you see, max 200 characters>'
+    : '<brief description in ENGLISH of what you see, max 200 characters>'
+
+  const languageNote = isHebrew
+    ? '\n\nIMPORTANT: Write the "description" field in HEBREW (עברית).'
+    : '\n\nIMPORTANT: Write the "description" field in ENGLISH.'
+
+  return `You are an expert archaeologist analyzing an artifact photo. Identify the artifact type and provide preservation guidance.
 
 IMPORTANT: You must respond with ONLY valid JSON, no additional text or markdown.
 
@@ -26,7 +37,7 @@ Analyze the image and return JSON in this exact format:
   "artifactType": "ceramics" | "metals" | "organic" | "textiles" | "scrolls",
   "confidence": <number 0-100>,
   "risks": ["humidity" | "temperature" | "shock" | "light" | "oxygen"],
-  "description": "<brief description of what you see, max 200 characters>",
+  "description": "${descriptionInstruction}",
   "preservationUrgency": "critical" | "high" | "medium" | "low"
 }
 
@@ -54,8 +65,10 @@ If you cannot identify the artifact clearly, default to:
 - artifactType: "organic" (most common archaeological finds)
 - confidence: 30
 - preservationUrgency: "high"
+${languageNote}
 
 Respond with JSON only.`
+}
 
 export const handler: Handler = async (event) => {
   // CORS headers - restrict to site URL in production
@@ -91,7 +104,7 @@ export const handler: Handler = async (event) => {
     }
 
     const body = JSON.parse(event.body || '{}')
-    const { image, mimeType = 'image/jpeg' } = body
+    const { image, mimeType = 'image/jpeg', language = 'en' } = body
 
     if (!image) {
       return {
@@ -130,7 +143,7 @@ export const handler: Handler = async (event) => {
 
     // Call Gemini Vision
     const result = await model.generateContent([
-      IDENTIFICATION_PROMPT,
+      getIdentificationPrompt(language),
       {
         inlineData: {
           mimeType,
@@ -187,7 +200,9 @@ export const handler: Handler = async (event) => {
         artifactType: 'organic',
         confidence: 30,
         risks: ['humidity', 'temperature'],
-        description: 'Unable to clearly identify artifact. Treating as organic material for safety.',
+        description: language === 'he'
+          ? 'לא ניתן לזהות את הממצא בבירור. מטופל כחומר אורגני לצורכי בטיחות.'
+          : 'Unable to clearly identify artifact. Treating as organic material for safety.',
         preservationUrgency: 'high',
       }
     }

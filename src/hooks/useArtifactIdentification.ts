@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { RiskType } from '../data/artifacts'
 
 export interface IdentificationResult {
@@ -21,6 +22,7 @@ export function useArtifactIdentification(): UseArtifactIdentificationReturn {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [result, setResult] = useState<IdentificationResult | null>(null)
+  const { i18n } = useTranslation()
 
   const identify = useCallback(async (imageBase64: string, mimeType = 'image/jpeg'): Promise<IdentificationResult> => {
     setIsLoading(true)
@@ -36,6 +38,7 @@ export function useArtifactIdentification(): UseArtifactIdentificationReturn {
         body: JSON.stringify({
           image: imageBase64,
           mimeType,
+          language: i18n.language,
         }),
       })
 
@@ -55,7 +58,7 @@ export function useArtifactIdentification(): UseArtifactIdentificationReturn {
     } finally {
       setIsLoading(false)
     }
-  }, [])
+  }, [i18n.language])
 
   const reset = useCallback(() => {
     setIsLoading(false)
